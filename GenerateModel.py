@@ -3,14 +3,14 @@ from PIL import Image
 from os import listdir
 
 #Begin modifiable global variables
-dataset = "datasets/Frisbee Form Analysis.v4i.yolov8"   #Change path to match current dataset
+dataset = "datasets/V4"   #Change path to match current dataset
 
-training = False        #Are you training a new model?
-numEpochs = 300         #Number of "epochs", or individual instances of training on a subset of the dataset. Generally from 100 to 500 for this project
+training = True        #Are you training a new model?
+numEpochs = 100         #Number of "epochs", or individual instances of training on a subset of the dataset. Generally from 100 to 500 for this project
 batchSize = 16          #Number of images to train on per epoch. Generally between 12 and 20 for this project; my GPU ran out of memory while training on 20
 patienceVal = 100       #Number of epochs w/o improvement before stopping training early. 100 is a good baseline, and you should change it based on numEpochs and your computer
 
-visualizeModel = True  #Are you visualizing an existing model?
+visualizeModel = False  #Are you visualizing an existing model?
 modelNum = 0            #0 if visualizing the most recent model, otherwise visualizes the chosen model number.
                         #This variable does nothing if visualizeModel is False.
 #End modifiable global variables
@@ -34,7 +34,7 @@ def visualize(modelNum):
     model = YOLO("runs/pose/train" + ("" if modelNum == 1 else str(modelNum)) + "/weights/best.pt")
 
     #Run the model on all images in the most recent test folder
-    test_folder = dataset + "/test/images"
+    test_folder = "./test/images"
 
     testing_count = 1
 
